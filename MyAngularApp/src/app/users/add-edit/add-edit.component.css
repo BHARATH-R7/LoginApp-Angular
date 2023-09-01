@@ -1,0 +1,40 @@
+div{
+    margin: 10px;
+}
+
+
+.Error{
+    color: red;
+}
+
+.save-button-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button-link:hover {
+    background-color: darkgreen;
+}
+
+.cancel-button-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button-link:hover {
+    background-color: darkred;
+}

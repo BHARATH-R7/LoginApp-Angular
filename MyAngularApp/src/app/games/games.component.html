@@ -1,0 +1,6 @@
+<h3>Hello Games!</h3>
+<p>Fetch User Games:</p><button (click)="onGames()">Games</button>
+<ul>
+    <li *ngFor="let game of gameslist">{{game}}</li>
+</ul>
+<router-outlet></router-outlet>

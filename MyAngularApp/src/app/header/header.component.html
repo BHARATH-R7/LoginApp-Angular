@@ -1,0 +1,27 @@
+<nav>
+    <div style="display:flex; justify-content:space-between; ">
+        <div>
+            <!-- In Angular for anchor tag, routerLink is similar to href, for href the value is complete url path,
+            whereas for routerLink the value is just the route path -->
+            <a routerLink="/about" routerLinkActive="active-link">About</a>
+        </div>
+        <div *ngIf="!isLoggedIn">
+            <a routerLink="/auth" routerLinkActive="active-link">Login</a>
+        </div>
+        <div *ngIf="isLoggedIn">
+            <a routerLink="/games" routerLinkActive="active-link">Games</a>
+        </div>
+        <div *ngIf="isLoggedIn">
+            <a routerLink="/crud/get" routerLinkActive="active-link">CrudUser</a>
+        </div>
+        <div *ngIf="isLoggedIn">
+            <a routerLink="/crud/book/get" routerLinkActive="active-link">CrudBook</a>
+        </div>
+        <div *ngIf="isLoggedIn">
+            <a style="color: red; cursor: pointer;" (click)="onLogOut()">LogOut</a>
+        </div>
+    </div>
+    <div>
+        <hr style="border: 0.5px solid grey;">
+    </div>
+</nav>

@@ -1,0 +1,33 @@
+<ng-container *ngIf="{
+        books: books$ | async,
+        isLoading: isLoading$ | async
+    } as data">
+    <div class="header">
+        <input #inputElement style="margin-right: 10px;">
+        <button (click)="onCreateBook(inputElement.value)" class="save-button-link">Create book</button>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <table>
+            <th style="text-align: left;">ID</th>
+            <th style="text-align: left;">Name</th>
+            <tbody>
+                <tr *ngFor="let book of data.books; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{book.name}}</td>
+                    <td><button (click)="onDeleteBook(book)" class="cancel-button-link">Delete</button></td>
+                    <td><button (click)="openEditForm(book)" class="update-button-link">Edit</button></td>
+                    <div class="edit-form-container" *ngIf="isFormVisible">
+                        <div class="edit-form">
+                            <!-- bookName and bookId is assigning in opendEditForm(book) -->
+                            <input type="text" #inputElement  [value]="bookName" style="width: 200px; height: 8px; font-size: 14px; padding: 10px; margin-right: 5px;" >
+                            <button (click)="onUpdateBook(bookId, inputElement.value)" class="save-button-link" style="margin-right: 5px;">Save</button>
+                            <button (click)="closeEditForm()" class="cancel-button-link">Cancel</button>
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>

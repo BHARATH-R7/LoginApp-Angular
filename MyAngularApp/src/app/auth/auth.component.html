@@ -1,0 +1,47 @@
+<div>
+    <div *ngIf="ErrorMessage">
+        <p style="color: red">{{ ErrorMessage }}</p>
+    </div>
+    <div *ngIf="!isAuthenticated">
+        <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div>
+                    <label for="email" style="font-weight: bold; padding-right: 20px;">EmailId:</label>
+                    <br>
+                    <input 
+                    style="width: 200px; height: 8px; font-size: 14px; padding: 10px;" 
+                    type="email" 
+                    ngModel 
+                    name="UserEmailId" 
+                    required 
+                    email 
+                    autofocus>
+                </div>
+                <br>
+                <div>
+                    <label for="email" style="font-weight: bold; padding-right: 7px;">Password:</label>
+                    <br>
+                    <input 
+                    style="width: 200px; height: 8px; font-size: 14px; padding: 10px;" 
+                    type="password" 
+                    ngModel 
+                    name="UserPassword" 
+                    required>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" [disabled]="!authForm.valid" style="color: white; 
+                    background-color: blue;
+                    font-size: 14px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                    border: 1px solid blue;
+                    padding: 5px;
+                    text-align: center;
+                    cursor: pointer;">Login</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

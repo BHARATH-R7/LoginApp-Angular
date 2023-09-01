@@ -1,0 +1,48 @@
+<div *ngIf="ForbiddenErrorMsg">
+    <h2 style="color: red">{{ForbiddenErrorMsg}}</h2>
+</div>
+
+<h1>Users</h1>
+<div *ngIf="hasWriteAccess">
+    <!-- From: http://localhost:4200/crud/get
+         To: http://localhost:4200/crud/add -->
+    <a routerLink="../add" style="color: green; margin-right: 20px;" class="default-button">Add User</a>
+
+</div>
+<br>
+<br>
+<table class="table table-striped" style="margin-right: 50px;">
+    <thead>
+        <tr>
+            <th style="width: 30%; text-align: left;">Name</th>
+            <th style="width: 30%; text-align: left;">Email</th>
+            <th style="width: 30%; text-align: left;">Role</th>
+            <th style="width: 10%; text-align: left;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.title}} {{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td style="white-space: nowrap">
+
+                <a routerLink="../edit/{{user.id}}" style="color: blue; margin-right: 10px;" class="default-button">Edit
+                    User</a>
+                <span *ngIf="hasWriteAccess"> |
+                    <button (click)="deleteUser(user.id)" style=" margin-left: 10px;">
+                        <span *ngIf="!user.isDeleting"
+                            style="color: red; font-size: 14px; font-weight: bold; text-align: center; cursor: pointer;">Delete
+                            User</span>
+                    </button>
+                </span>
+
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

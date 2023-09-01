@@ -1,0 +1,26 @@
+.active-link {
+    color: darkblue;
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: green;
+    text-decoration: underline;
+    font-weight: bold;
+
+  }
+
+  .custom-link {
+    color: red;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .custom-link:hover {
+    text-decoration: underline;
+  }
