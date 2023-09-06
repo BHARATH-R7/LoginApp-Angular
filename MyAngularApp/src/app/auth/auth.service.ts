@@ -23,6 +23,49 @@ export class AuthService {
             'emailid': emailId,
             'password': password
         }
+
+        // Store a string in the cache
+        caches.open("Token-Bharath") //Cache Name
+            .then((cache) => {
+                console.log('CACHE: Opened')
+                let responseText = "EmailId: bharath@gmail.com, Password: A123";
+                let response = new Response(responseText);
+
+                // Use a relative URL (without the domain) for cache.put()
+                let cacheKey = 'Auth/Login';
+
+                cache.put(cacheKey, response)
+                    .then(() => {
+                    })
+                    .catch((error) => {
+                    });
+            })
+            .then(() => {
+                // Retrieve and display the string from the cache
+                caches.open("Token-Bharath")
+                    .then((cache) => {
+                        return cache.match('Auth/Login'); // Use the same relative URL
+                    })
+                    .then((cachedResponse) => {
+                        if (cachedResponse) {
+                            return cachedResponse.text(); // This retrieves the response body as text
+                        } else {
+                            return null;
+                        }
+                    })
+                    .then((responseText) => {
+                        if (responseText) {
+                            console.log('CACHE FETCHED DATA: ', responseText);
+                        }
+                    })
+                    .catch((error) => {
+                    });
+            })
+            .catch((error) => {
+                console.error('Cache error:', error);
+            });
+
+
         //In Interceptor we add the domain(https://localhost:7091) for each request
         return this.http.post<AuthResponseData>('Auth/Login', credentials)
             .pipe(
@@ -59,6 +102,10 @@ export class AuthService {
     }
 
     logOut() {
+        caches.delete("Token-Bharath").then(() => {
+            console.log('CACHE: Closed')
+        });
+        
         this.authResData.next({ token: '' });
         this.router.navigate(['/auth']);
         localStorage.removeItem('token');
@@ -115,7 +162,7 @@ export class AuthService {
         const decodedToken: any = jwtDecode<any>(token);
         if (decodedToken.Permission.includes('Write')) {
             this.hasWriteAccess = true;
-        }else{
+        } else {
         }
     }
 }

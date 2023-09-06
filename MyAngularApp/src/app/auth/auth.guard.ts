@@ -25,6 +25,8 @@ export const AuthGuard: CanActivateFn = (
       }
       console.log('Auth Guard: False');
       return router.createUrlTree(['']);
+
+      
     })
   );
 };
